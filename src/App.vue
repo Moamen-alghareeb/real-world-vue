@@ -8,7 +8,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <div class="wrapper">
         <nav>
           <div>
-            <span class="logo">EFG</span>
+            <!-- <span class="logo">EFG</span> -->
+            <RouterLink class="logo" :to="{ name: 'home' }">EFG</RouterLink>
           </div>
           <div>
             <RouterLink :to="{ name: 'event-list' }">Events</RouterLink> |
@@ -53,14 +54,15 @@ h2 {
   color: white;
   border-radius: 5px;
   font-weight: bold;
-}
-.logo {
-  padding: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
   cursor: pointer;
   border: 1px solid #39495c;
 }
+
 .logo:hover {
   transform: scale(1.01);
+  color: #39495c;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 </style>

@@ -1,8 +1,19 @@
 <template>
-  <div v-if="event">
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-    <p>{{ event.description }}</p>
+  <div id="layout">
+    <header>
+      <div class="wrapper">
+        <nav>
+          <div>
+            <RouterLink :to="{ name: 'eventDetails' }">Details</RouterLink> |
+            <RouterLink :to="{ name: 'eventRegister' }">Register</RouterLink> |
+            <RouterLink :to="{ name: 'eventEdit' }">Edit</RouterLink>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- <h1>Events For Good</h1> -->
+    <!-- new element -->
+    <RouterView :event="event" />
   </div>
 </template>
 
