@@ -20,6 +20,7 @@
 <script setup>
 import EventService from '@/service/EventService'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 // inititalize event
 const event = ref(null)
 // const id = ref(123)
@@ -29,6 +30,7 @@ const props = defineProps({
     required: true,
   },
 })
+const router = useRouter()
 
 onMounted(() => {
   EventService.getEventById(props.id)
@@ -37,7 +39,13 @@ onMounted(() => {
 
       event.value = response.data
     })
-    .catch((err) => {})
+    .catch((err) => {
+      if (err.response && err.response.status == 404) {
+        router.push({ name: 'EventNotFound', params: { resource: 'event' } })
+      } else {
+        router.push({ name: 'NetworkError' })
+      }
+    })
 })
 </script>
 

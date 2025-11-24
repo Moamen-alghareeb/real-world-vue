@@ -2,17 +2,19 @@
 import EventCard from '@/components/EventCard.vue'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import eventService from '@/service/EventService.js'
-const events = ref(null)
-const perPage = 3
-const page = computed(() => props.page)
-const eventCount = ref(0)
-// const totalPages = ref(0)
+import { useRouter } from 'vue-router'
 const props = defineProps({
   page: {
     type: Number,
     required: true,
   },
 })
+const router = useRouter()
+const events = ref(null)
+const perPage = 3
+const page = computed(() => props.page)
+const eventCount = ref(0)
+// const totalPages = ref(0)
 // const fetchEvents =
 onMounted(() => {
   watchEffect(() => {
@@ -28,7 +30,7 @@ onMounted(() => {
         events.value = response.data
       })
       .catch((error) => {
-        console.log(error)
+        router.push({ name: 'NetworkError' })
       })
   })
 })
